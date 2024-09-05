@@ -18,7 +18,7 @@
         >
           <div class="mb-20 text-2xl font-medium">LOGO.inc</div>
           <div class="flex flex-col">
-            <a>Home</a>
+            <a href="/home">Home</a>
             <div class="border-b border-slate-200 mx-3 mt-1"></div>
           </div>
 
@@ -33,7 +33,7 @@
           </div>
 
           <div class="flex flex-col">
-            <a>Employees</a>
+            <a href="/teachers">Teachers</a>
             <div class="border-b border-slate-200 mx-3 mt-1"></div>
           </div>
         </div>
@@ -69,22 +69,25 @@
               <label for="title">Class name:</label>
               <input
                 required
+                id="title"
                 class="rounded-lg bg-slate-50 px-2"
                 name="title"
                 type="text"
               />
-              <label for="start-time">Start time:</label>
+              <label for="start_time">Start time:</label>
               <input
+                id="start_time"
                 required
                 class="rounded-lg bg-slate-50 px-2"
-                name="start-time"
+                name="start_time"
                 type="datetime-local"
               />
-              <label for="end-time">End time:</label>
+              <label for="end_time">End time:</label>
               <input
+                id="end_time"
                 required
                 class="rounded-lg bg-slate-50 px-2"
-                name="end-time"
+                name="end_time"
                 type="datetime-local"
               />
               <input

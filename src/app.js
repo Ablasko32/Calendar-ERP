@@ -1,6 +1,7 @@
 import express from "express";
-import indexRouter from "./routes/indexRouter.js";
+import homeRouter from "./routes/homeRouter.js";
 import eventRouter from "./routes/eventsRouter.js";
+import teacherRouter from "./routes/teachersRouter.js";
 import "./config/config.js";
 
 const app = express();
@@ -10,8 +11,9 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/", indexRouter);
+app.use("/", homeRouter);
 app.use("/", eventRouter);
+app.use("/", teacherRouter);
 
 app.listen(process.env.DEFAULT_PORT || 3000, () => {
   console.log("Server runing on localhost port: " + process.env.DEFAULT_PORT);

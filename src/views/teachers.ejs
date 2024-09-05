@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/js/bundle.js"></script>
+    <link rel="stylesheet" href="/styles/output.css" />
+    <title>Calendar practice</title>
+  </head>
+  <body class="text-gray-600">
+    <!-- Page layout -->
+    <div class="flex">
+      <!-- Nav container -->
+      <div class="bg-slate-700/90 h-screen w-1/6 relative">
+        <!-- container for navigation and logo -->
+        <div
+          class="p-4 pt-6 flex flex-col space-y-3 items-center text-slate-200 text-xl"
+        >
+          <div class="mb-20 text-2xl font-medium">LOGO.inc</div>
+          <div class="flex flex-col">
+            <a href="/home">Home</a>
+            <div class="border-b border-slate-200 mx-3 mt-1"></div>
+          </div>
+
+          <div class="flex flex-col">
+            <a>Classes</a>
+            <div class="border-b border-slate-200 mx-3 mt-1"></div>
+          </div>
+
+          <div class="flex flex-col">
+            <a>Students</a>
+            <div class="border-b border-slate-200 mx-3 mt-1"></div>
+          </div>
+
+          <div class="flex flex-col">
+            <a a href="/teachers">Teachers</a>
+            <div class="border-b border-slate-200 mx-3 mt-1"></div>
+          </div>
+        </div>
+
+        <!-- footer part -->
+        <aside
+          class="absolute bottom-7 left-10 text-slate-100 font-thin text-sm"
+        >
+          <div class="flex flex-col">
+            <div>Copyright &copy; 2024, LOGO.inc</div>
+            <div>Made by Antonio Blašković</div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Workspace container -->
+      <div class="bg-slate-200 h-screen w-full pt-10">
+        <!-- Workspace title -->
+        <div class="flex flex-col justify-center items-center">
+          <h1 class="text-6xl font-medium">Teachers</h1>
+          <button
+            id="add-class-btn"
+            class="my-10 bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg text-xl font-medium shadow-lg"
+          >
+            Add Teacher
+          </button>
+          <div id="add-class-dropdown" class="p-4 mb-5 hidden">
+            <form
+              action="/teachers"
+              method="POST"
+              class="flex space-x-4 items-center"
+            >
+              <label for="name">Name:</label>
+              <input
+                id="name"
+                required
+                class="rounded-lg bg-slate-50 px-2"
+                name="name"
+                type="text"
+              />
+              <label for="email">Email:</label>
+              <input
+                id="email"
+                class="rounded-lg bg-slate-50 px-2"
+                name="email"
+                type="text"
+              />
+              <label for="phone">Phone:</label>
+              <input
+                id="phone"
+                required
+                class="rounded-lg bg-slate-50 px-2"
+                name="phone"
+                type="text"
+              />
+              <input
+                class="bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg font-medium shadow-lg"
+                type="submit"
+                value="Add"
+              />
+            </form>
+          </div>
+        </div>
+
+        <!-- Filter -->
+
+        <div>
+          <div class="mx-10 mb-10">
+            <button
+              id="filter-btn"
+              class="bg-slate-400 text-slate-100 py-1 px-4 rounded-lg text-xl font-medium shadow-lg flex items-center space-x-2"
+            >
+              <span>Filter</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#fff"
+              >
+                <path d="M480-360 280-560h400L480-360Z" />
+              </svg>
+            </button>
+
+            <!-- display filter menu -->
+            <div id="filterMenu" class="mt-5 hidden">
+              <form class="flex items-center space-x-4">
+                <label for="searchByName">Name:</label>
+                <input
+                  id="searchByName"
+                  name="searchByName"
+                  class="rounded-lg bg-slate-50 px-2"
+                  type="text"
+                />
+                <label for="searchByEmail">Email:</label>
+                <input
+                  id="searchByEmail"
+                  name="searchByEmail"
+                  class="rounded-lg bg-slate-50 px-2"
+                  type="text"
+                />
+                <label for="searchByPhone">Email:</label>
+                <input
+                  id="searchByPhone"
+                  name="searchByPhone"
+                  class="rounded-lg bg-slate-50 px-2"
+                  type="text"
+                />
+                <input
+                  class="bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg font-medium shadow-lg"
+                  type="submit"
+                  value="Search"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- display teachers -->
+        <div class="mx-10">
+          <div class="overflow-x-auto">
+            <table class="table-auto w-full text-left border-collapse">
+              <thead class="bg-slate-300">
+                <tr>
+                  <th class="font-medium p-4 text-xl">Name</th>
+                  <th class="font-medium p-4 text-xl">Email</th>
+                  <th class="font-medium p-4 text-xl">Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% teachers.forEach(teacher => { %>
+                <tr class="even:bg-slate-300 hover:bg-slate-100">
+                  <td class="p-4"><%= teacher.name %></td>
+                  <td class="p-4"><%= teacher.email %></td>
+                  <td class="p-4"><%= teacher.phone %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- form -->
+    <!-- <div class="flex justify-center mt-5 pb-20">
+      
+    </div> -->
+
+    <script>
+      const addClassBtn = document.getElementById("add-class-btn");
+      addClassBtn.addEventListener("click", () => {
+        document
+          .getElementById("add-class-dropdown")
+          .classList.toggle("hidden");
+
+        if (
+          document
+            .getElementById("add-class-dropdown")
+            .classList.contains("hidden")
+        ) {
+          addClassBtn.textContent = "Add Teacher";
+        } else {
+          addClassBtn.textContent = "Close";
+        }
+      });
+
+      const filterBtn = document.getElementById("filter-btn");
+      filterBtn.addEventListener("click", () => {
+        console.log("Clicked");
+        document.getElementById("filterMenu").classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
