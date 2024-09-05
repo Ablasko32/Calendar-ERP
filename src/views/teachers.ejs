@@ -102,21 +102,28 @@
 
         <div>
           <div class="mx-10 mb-10">
-            <button
-              id="filter-btn"
-              class="bg-slate-400 text-slate-100 py-1 px-4 rounded-lg text-xl font-medium shadow-lg flex items-center space-x-2"
-            >
-              <span>Filter</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="#fff"
+            <div class="flex justify-between items-center">
+              <button
+                id="filter-btn"
+                class="bg-slate-400 text-slate-100 py-1 px-4 rounded-lg text-xl font-medium shadow-lg flex items-center space-x-2"
               >
-                <path d="M480-360 280-560h400L480-360Z" />
-              </svg>
-            </button>
+                <span>Filter</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#fff"
+                >
+                  <path d="M480-360 280-560h400L480-360Z" />
+                </svg>
+              </button>
+              <a
+                href="/teachers"
+                class="font-thin border-b border-slate-400 mr-5"
+                >Remove filters</a
+              >
+            </div>
 
             <!-- display filter menu -->
             <div id="filterMenu" class="mt-5 hidden">
@@ -135,7 +142,7 @@
                   class="rounded-lg bg-slate-50 px-2"
                   type="text"
                 />
-                <label for="searchByPhone">Email:</label>
+                <label for="searchByPhone">Phone:</label>
                 <input
                   id="searchByPhone"
                   name="searchByPhone"
