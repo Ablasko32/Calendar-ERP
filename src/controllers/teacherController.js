@@ -70,4 +70,17 @@ const addNewTeacher = async (req, res) => {
   }
 };
 
-export { getTeacherPage, addNewTeacher };
+const deleteTeacher = async (req, res) => {
+  try {
+    await db.query("DELETE FROM teachers WHERE id=$1", [req.params.id]);
+    res.redirect("/teachers");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const editTeacher = async (req, res) => {
+  res.send("Editing" + req.params.id);
+};
+
+export { getTeacherPage, addNewTeacher, deleteTeacher, editTeacher };
