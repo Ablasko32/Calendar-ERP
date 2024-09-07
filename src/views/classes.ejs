@@ -7,52 +7,53 @@
 
       <!-- Workspace container -->
       <div class="bg-slate-200 h-screen w-full pt-10">
-        <!-- Workspace title -->
-        <div class="flex flex-col justify-center items-center">
-          <h1 class="text-6xl font-medium">Students</h1>
-          <button
-            id="add-class-btn"
-            class="my-10 bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg text-xl font-medium shadow-lg"
-          >
-            Add Student
-          </button>
-          <div id="add-class-dropdown" class="p-4 mb-5 hidden">
-            <form
-              action="/students"
-              method="POST"
-              class="flex space-x-4 items-center"
-            >
-              <label for="name">Name:</label>
-              <input
-                id="name"
-                required
-                class="rounded-lg bg-slate-50 px-2"
-                name="name"
-                type="text"
-              />
-              <label for="email">Email:</label>
-              <input
-                id="email"
-                class="rounded-lg bg-slate-50 px-2"
-                name="email"
-                type="text"
-              />
-              <label for="phone">Phone:</label>
-              <input
-                id="phone"
-                required
-                class="rounded-lg bg-slate-50 px-2"
-                name="phone"
-                type="text"
-              />
-              <input
-                class="bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg font-medium shadow-lg"
-                type="submit"
-                value="Add"
-              />
-            </form>
-          </div>
-        </div>
+     <!-- Workspace title -->
+     <div class="flex flex-col justify-center items-center">
+      <h1 class="text-6xl font-medium">Classes</h1>
+      <button
+        id="add-class-btn"
+        class="my-10 bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg text-xl font-medium shadow-lg"
+      >
+        Add Class
+      </button>
+      <div id="add-class-dropdown" class="p-4 mb-5 hidden">
+        <form
+          action="/event"
+          method="POST"
+          class="flex space-x-4 items-center"
+        >
+          <label for="title">Class name:</label>
+          <input
+            required
+            id="title"
+            class="rounded-lg bg-slate-50 px-2"
+            name="title"
+            type="text"
+          />
+          <label for="start_time">Start time:</label>
+          <input
+            id="start_time"
+            required
+            class="rounded-lg bg-slate-50 px-2"
+            name="start_time"
+            type="datetime-local"
+          />
+          <label for="end_time">End time:</label>
+          <input
+            id="end_time"
+            required
+            class="rounded-lg bg-slate-50 px-2"
+            name="end_time"
+            type="datetime-local"
+          />
+          <input
+            class="bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg font-medium shadow-lg"
+            type="submit"
+            value="Add"
+          />
+        </form>
+      </div>
+    </div>
 
         <!-- Filter -->
 
@@ -91,19 +92,19 @@
                   class="rounded-lg bg-slate-50 px-2"
                   type="text"
                 />
-                <label for="searchByEmail">Email:</label>
+                <label for="searchByStartDate">Start date:</label>
                 <input
-                  id="searchByEmail"
-                  name="searchByEmail"
+                  id="searchByStartDate"
+                  name="searchByStartDate"
                   class="rounded-lg bg-slate-50 px-2"
-                  type="text"
+                  type="date"
                 />
-                <label for="searchByPhone">Phone:</label>
+                <label for="searchByEndDate">End date:</label>
                 <input
-                  id="searchByPhone"
-                  name="searchByPhone"
+                  id="searchByEndDate"
+                  name="searchByEndDate"
                   class="rounded-lg bg-slate-50 px-2"
-                  type="text"
+                  type="date"
                 />
                 <input
                   class="bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg font-medium shadow-lg"
@@ -115,27 +116,27 @@
           </div>
         </div>
 
-        <!-- display students -->
+        <!-- display classes -->
         <div class="mx-10">
           <div class="overflow-x-auto">
             <table class="table-auto w-full text-left border-collapse">
               <thead class="bg-slate-300">
                 <tr>
                   <th class="font-medium p-4 text-xl">Name</th>
-                  <th class="font-medium p-4 text-xl">Email</th>
-                  <th class="font-medium p-4 text-xl">Phone</th>
+                  <th class="font-medium p-4 text-xl">Start Time</th>
+                  <th class="font-medium p-4 text-xl">End Time</th>
                 </tr>
               </thead>
               <tbody>
-                <% students.forEach(student => { %>
+                <% classes.forEach(clas => { %>
                 <tr class="relative even:bg-slate-300 hover:bg-slate-100">
-                  <td class="p-4"><%= student.name %></td>
-                  <td class="p-4"><%= student.email %></td>
-                  <td class="p-4"><%= student.phone %></td>
+                  <td class="p-4"><%= clas.title %></td>
+                  <td class="p-4"><%= new Date(clas.start_time).toLocaleString()  %></td>
+                  <td class="p-4"><%= new Date(clas.end_time).toLocaleString()  %></td>
                   <!-- edit-->
                   <td class="absolute right-20 top-4">
                     <!-- edit -->
-                    <a href="/students/edit/<%= student.id %>"
+                    <a href="/classes/edit/<%= clas.id %>"
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="24px"
@@ -150,7 +151,7 @@
                   </td>
                   <!-- del -->
                   <td class="absolute right-5 top-4">
-                    <a href="/students/del/<%= student.id %>"
+                    <a href="/classes/del/<%= clas.id %>"
                       ><svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="24px"
@@ -177,6 +178,8 @@
             </div>
           </div>
         </div>
+
+    
       </div>
     </div>
 

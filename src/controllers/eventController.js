@@ -25,7 +25,7 @@ const addNewEvent = async (req, res) => {
       "INSERT INTO events(title,start_time,end_time) VALUES($1,$2,$3)",
       [title, start_time, end_time]
     );
-    res.redirect("/home");
+    res.redirect("/classes");
   } catch (err) {
     console.log(err);
   }

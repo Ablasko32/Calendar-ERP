@@ -7,54 +7,45 @@
 
       <!-- Workspace container -->
       <div class="bg-slate-200 h-screen w-full pt-10">
-        <!-- Workspace title -->
-        <div class="flex flex-col justify-center items-center">
-          <h1 class="text-6xl font-medium">View Classes</h1>
-          <button
-            id="add-class-btn"
-            class="my-10 bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg text-xl font-medium shadow-lg"
-          >
-            Add Class
-          </button>
-          <div id="add-class-dropdown" class="p-4 mb-5 hidden">
-            <form
-              action="/event"
-              method="POST"
-              class="flex space-x-4 items-center"
-            >
-              <label for="title">Class name:</label>
-              <input
-                required
-                id="title"
-                class="rounded-lg bg-slate-50 px-2"
-                name="title"
-                type="text"
-              />
-              <label for="start_time">Start time:</label>
-              <input
-                id="start_time"
-                required
-                class="rounded-lg bg-slate-50 px-2"
-                name="start_time"
-                type="datetime-local"
-              />
-              <label for="end_time">End time:</label>
-              <input
-                id="end_time"
-                required
-                class="rounded-lg bg-slate-50 px-2"
-                name="end_time"
-                type="datetime-local"
-              />
-              <input
-                class="bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg font-medium shadow-lg"
-                type="submit"
-                value="Add"
-              />
-            </form>
-          </div>
-        </div>
 
+        <!-- radna zona statistika -->
+        <div class="flex justify-around mb-20">
+          <div class="bg-slate-300 p-4 w-1/6 flex flex-col items-center shadow-lg space-y-2 rounded-lg ">
+            <p class="text-xl flex flex-col">
+              <span>58</span>
+              <span class="border-b-4 border-green-500 "></span>
+            </p>
+            <p class="text-xl flex flex-col">
+              <span>250</span>
+              <span class="border-b-4 border-red-500 "></span>
+            </p>
+            <p class="font-medium opacity-70">Students</p>
+          </div>
+          <div class="bg-slate-300 p-4 w-1/6 flex flex-col items-center shadow-lg space-y-2 rounded-lg  ">
+            <p class="text-xl flex flex-col">
+              <span>58</span>
+              <span class="border-b-4 border-green-500 "></span>
+            </p>
+            <p class="text-xl flex flex-col">
+              <span>250</span>
+              <span class="border-b-4 border-red-500 "></span>
+            </p>
+            <p class="font-medium opacity-70">Classes</p>
+          </div>
+          <div class="bg-slate-300 p-4 w-1/6 flex flex-col items-center shadow-lg space-y-2 rounded-lg  ">
+            <p class="text-xl flex flex-col">
+              <span>58</span>
+              <span class="border-b-4 border-green-500 "></span>
+            </p>
+            <p class="text-xl flex flex-col">
+              <span>250</span>
+              <span class="border-b-4 border-red-500 "></span>
+            </p>
+            <p class="font-medium opacity-70">Employes</p>
+          </div>
+
+          
+        </div>
         <!-- calendar -->
         <div class="flex justify-center items-center">
           <div

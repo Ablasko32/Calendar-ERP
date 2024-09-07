@@ -167,13 +167,14 @@
                 <% }); %>
               </tbody>
             </table>
-            <!-- pagination -->
-            <div class="flex justify-center mt-3 space-x-5">
-              <% if(page > 1){ %>
-              <a href="<%= urlString %>&page=<%= page - 1 %>">PREV</a>
-              <% } %>
-              <a href="<%= urlString %>&page=<%= page + 1 %>">NEXT</a>
-            </div>
+           <!-- pagination -->
+           <div class="flex justify-center mt-3 space-x-5">
+            <% if(page > 1){ %>
+            <a href="<%= urlString %>&page=<%= page - 1 %>"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></a>
+            <% } %>
+            
+            <a href="<%= urlString %>&page=<%= page + 1 %>"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg></a>
+          </div>
           </div>
         </div>
       </div>

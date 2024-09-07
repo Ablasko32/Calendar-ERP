@@ -3,6 +3,7 @@ import homeRouter from "./routes/homeRouter.js";
 import eventRouter from "./routes/eventsRouter.js";
 import teacherRouter from "./routes/teachersRouter.js";
 import studentRouter from "./routes/studentsRouter.js";
+import classRouter from "./routes/clasesRouter.js";
 import "./config/config.js";
 
 const app = express();
@@ -16,6 +17,7 @@ app.use("/", homeRouter);
 app.use("/", eventRouter);
 app.use("/", teacherRouter);
 app.use("/", studentRouter);
+app.use("/", classRouter);
 
 app.listen(process.env.DEFAULT_PORT || 3000, () => {
   console.log("Server runing on localhost port: " + process.env.DEFAULT_PORT);
