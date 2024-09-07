@@ -1,3 +1,13 @@
+CREATE TABLE teachers(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(150) NOT NULL,
+	email VARCHAR(150),
+	phone VARCHAR(150)
+
+
+);
+
+
 CREATE TABLE events(
   id SERIAL PRIMARY KEY,
   title VARCHAR(50) NOT NULL,
@@ -18,11 +28,3 @@ CREATE TABLE students(
 );
 
 
-CREATE TABLE teachers(
-	id SERIAL PRIMARY KEY,
-	name VARCHAR(150) NOT NULL,
-	email VARCHAR(150),
-	phone VARCHAR(150)
-
-
-);
