@@ -1,9 +1,9 @@
 import db from "../config/database.js";
 
-const getTeacherPage = async (req, res) => {
+const getStudentPage = async (req, res) => {
   const { searchByName, searchByEmail, searchByPhone } = req.query;
   let queryParams = [];
-  let baseQuery = "SELECT * FROM teachers WHERE 1=1";
+  let baseQuery = "SELECT * FROM students WHERE 1=1";
 
   if (searchByName) {
     queryParams.push(`%${searchByName}%`);
@@ -38,8 +38,8 @@ const getTeacherPage = async (req, res) => {
   try {
     const result = await db.query(baseQuery, queryParams);
 
-    res.render("teachers.ejs", {
-      teachers: result.rows,
+    res.render("students.ejs", {
+      students: result.rows,
       page: page,
       urlString: urlString,
     });
@@ -48,26 +48,26 @@ const getTeacherPage = async (req, res) => {
   }
 };
 
-const addNewTeacher = async (req, res) => {
+const addNewStudent = async (req, res) => {
   const { name, email, phone } = req.body;
 
   try {
     const doesTeacherExist = await db.query(
-      "SELECT * FROM teachers WHERE email=$1",
+      "SELECT * FROM students WHERE email=$1",
       [email]
     );
     if (doesTeacherExist.rows.length === 0) {
       await db.query(
-        "INSERT INTO teachers(name,email,phone) VALUES ($1,$2,$3)",
+        "INSERT INTO students(name,email,phone) VALUES ($1,$2,$3)",
         [name, email, phone]
       );
-      res.redirect("/teachers");
+      res.redirect("/students");
     } else {
-      console.log("Teacher exists");
+      console.log("Student exists");
     }
   } catch (err) {
     console.log(err);
   }
 };
 
-export { getTeacherPage, addNewTeacher };
+export { getStudentPage, addNewStudent };

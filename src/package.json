@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watcg-webpack": "npx webpack --watch",
+    "watch-webpack": "npx webpack --watch",
     "watch": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch",
     "build": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css "
   },
