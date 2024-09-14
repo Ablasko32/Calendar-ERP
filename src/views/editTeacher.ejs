@@ -1,0 +1,67 @@
+<%- include("partials/header.ejs") %>
+  <body class="text-gray-600">
+    <!-- Page layout -->
+    <div class="flex">
+      <!-- Nav container -->
+      <%- include("partials/nav_container.ejs") %>
+
+      <!-- Workspace container -->
+      <div class="bg-slate-200 h-screen w-full pt-10">
+        <!-- Workspace title -->
+        <div class="flex flex-col justify-center items-center">
+          <h1 class="text-6xl font-medium">Editing Teacher: <span><%= target.name %></span> </h1>
+          <form
+              action="/teacher/edit"
+              method="POST"
+              class="flex space-x-4 items-center mt-10"
+            >
+            <input name="id" type="hidden" value="<%= target.id %>">
+              <label for="name">Name:</label>
+              <input
+                id="name"
+                value="<%= target.name %>"
+                required
+                class="rounded-lg bg-slate-50 px-2"
+                name="name"
+                type="text"
+              />
+              <label for="email">Email:</label>
+              <input
+                id="email"
+                value="<%= target.email %>"
+                class="rounded-lg bg-slate-50 px-2"
+                name="email"
+                type="text"
+              />
+              <label for="phone">Phone:</label>
+              <input
+                id="phone"
+                required
+                value="<%= target.phone %>"
+                class="rounded-lg bg-slate-50 px-2"
+                name="phone"
+                type="text"
+              />
+              <input
+                class="bg-slate-700/80 text-slate-100 py-1 px-4 rounded-lg font-medium shadow-lg"
+                type="submit"
+                value="Save"
+              />
+            </form>
+         
+        </div>
+
+        
+
+        
+      </div>
+    </div>
+
+    <!-- form -->
+    <!-- <div class="flex justify-center mt-5 pb-20">
+      
+    </div> -->
+
+    
+  </body>
+</html>

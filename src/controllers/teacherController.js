@@ -80,7 +80,35 @@ const deleteTeacher = async (req, res) => {
 };
 
 const editTeacher = async (req, res) => {
-  res.send("Editing" + req.params.id);
+  try {
+    const result = await db.query("SELECT * FROM teachers WHERE id=$1", [
+      req.params.id,
+    ]);
+
+    res.render("editTeacher.ejs", { target: result.rows[0] });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export { getTeacherPage, addNewTeacher, deleteTeacher, editTeacher };
+const postEditTeacher = async (req, res) => {
+  const { id, name, email, phone } = req.body;
+  try {
+    const result = await db.query(
+      "UPDATE teachers SET name=$1, email=$2, phone=$3 WHERE id=$4",
+      [name, email, phone, id]
+    );
+
+    res.redirect("/teachers");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getTeacherPage,
+  addNewTeacher,
+  deleteTeacher,
+  editTeacher,
+  postEditTeacher,
+};

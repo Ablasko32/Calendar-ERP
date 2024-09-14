@@ -80,7 +80,35 @@ const deleteStudent = async (req, res) => {
 };
 
 const editStudent = async (req, res) => {
-  res.send("Editing" + req.params.id);
+  try {
+    const result = await db.query("SELECT * FROM students WHERE id=$1", [
+      req.params.id,
+    ]);
+
+    res.render("editStudent.ejs", { target: result.rows[0] });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-export { getStudentPage, addNewStudent, deleteStudent, editStudent };
+const postEditStudent = async (req, res) => {
+  const { id, name, email, phone } = req.body;
+  try {
+    const result = await db.query(
+      "UPDATE students SET name=$1, email=$2, phone=$3 WHERE id=$4",
+      [name, email, phone, id]
+    );
+
+    res.redirect("/students");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export {
+  getStudentPage,
+  addNewStudent,
+  deleteStudent,
+  editStudent,
+  postEditStudent,
+};
