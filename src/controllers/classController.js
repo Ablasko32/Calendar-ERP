@@ -33,11 +33,11 @@ const getClassPage = async (req, res) => {
   const urlString = `?searchByName=${searchByName || ""}&searchByStartDate=${
     searchByStartDate || ""
   }&searchByEndDate=${searchByEndDate || ""}`;
-  console.log(urlString);
+  // console.log(urlString);
   // querry execution
   try {
     const result = await db.query(baseQuery, queryParams);
-    console.log(result.rows);
+    // console.log(result.rows);
 
     res.render("classes.ejs", {
       classes: result.rows,
