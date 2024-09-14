@@ -49,4 +49,38 @@ const getClassPage = async (req, res) => {
   }
 };
 
-export { getClassPage };
+const editClass = async (req, res) => {
+  try {
+    const result = await db.query("SELECT * FROM events WHERE id=$1", [
+      req.params.id,
+    ]);
+
+    res.render("editClass.ejs", { target: result.rows[0] });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const postEditClass = async (req, res) => {
+  const { id, title, start_time, end_time } = req.body;
+  try {
+    const result = await db.query(
+      "UPDATE events SET title=$1,start_time=$2, end_time=$3 WHERE id=$4",
+      [title, start_time, end_time, id]
+    );
+    res.redirect("/classes");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deleteClass = async (req, res) => {
+  try {
+    await db.query("DELETE FROM events WHERE id=$1", [req.params.id]);
+    res.redirect("/classes");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { getClassPage, editClass, postEditClass, deleteClass };
